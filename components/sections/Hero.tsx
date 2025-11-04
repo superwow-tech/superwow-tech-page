@@ -83,8 +83,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-lg md:text-xl text-gray-400 font-normal max-w-[600px] mb-12 leading-relaxed"
         >
-          The marketplace where AI-powered creativity meets professional-grade software.
-          We design, ship, and maintain secure systems, AI assistants, and automation tools — so you can move faster and focus on your business.
+          Where AI creativity meets web development - built to move your business faster.
         </motion.p>
 
         {/* Buttons */}

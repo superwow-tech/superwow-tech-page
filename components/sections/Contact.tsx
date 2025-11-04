@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Globe, Copy, Check } from "lucide-react";
-import emailjs from "@emailjs/browser";
+import { Copy, Check } from "lucide-react";
 import { COMPANY } from "../../lib/constants/company";
-import { EMAILJS_CONFIG, RECIPIENT_EMAIL, type EmailTemplateParams } from "../../lib/config/emailjs";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -43,31 +41,29 @@ export function Contact() {
     setError(null);
 
     try {
-      // Check if EmailJS is properly configured
-      if (!EMAILJS_CONFIG.serviceId || !EMAILJS_CONFIG.templateId || !EMAILJS_CONFIG.publicKey) {
-        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
+      // Send email using API route
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
       }
-
-      // Prepare template parameters
-      const templateParams: EmailTemplateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_email: RECIPIENT_EMAIL,
-      };
-
-      // Send email using EmailJS
-      await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        templateParams as Record<string, unknown>,
-        EMAILJS_CONFIG.publicKey
-      );
 
       setSent(true);
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Email Error:', error);
       setError(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
     } finally {
       setIsLoading(false);

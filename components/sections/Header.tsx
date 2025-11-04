@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Atom } from "lucide-react";
+import Image from "next/image";
 import { COMPANY, menu } from "../../lib/constants/company";
 
 export function Header() {
@@ -10,13 +10,11 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         <motion.a 
           href="#" 
-          className="flex items-center gap-2 group"
+          className="flex items-center group"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 grid place-items-center shadow-lg shadow-purple-500/50 group-hover:shadow-purple-500/80 transition-shadow">
-            <Atom className="w-5 h-5" />
-          </div>
+          <Image src="/icon.ico" alt={COMPANY.name} width={60} height={60} />
           <span className="font-semibold tracking-tight text-white">{COMPANY.name}</span>
         </motion.a>
         <nav className="hidden md:flex items-center gap-8 text-sm">

@@ -9,7 +9,6 @@ export const stack = [
   "Cloud",
   "Performance",
   "Testing",
-  "CI/CD",
   "Monitoring",
   "Logging",
   "Data Pipelines",

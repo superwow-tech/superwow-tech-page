@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Atom } from "lucide-react";
+import Image from "next/image";
 import { COMPANY, menu } from "../../lib/constants/company";
 
 export function Footer() {
@@ -10,15 +10,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <motion.div 
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 grid place-items-center shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/60 transition-shadow">
-              <Atom className="w-5 h-5" />
-            </div>
+            <Image src="/icon.ico" alt={COMPANY.name} width={64} height={64} />
             <div>
-              <span className="font-bold text-white block text-gradient-animated">{COMPANY.name}</span>
-              <span className="text-xs text-gray-500 block">AI-Driven Development</span>
+              <span className="font-bold text-white block">{COMPANY.name}</span>
+              <span className="text-xs text-gray-500 block ">AI-Driven Development</span>
             </div>
           </motion.div>
           
