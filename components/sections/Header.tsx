@@ -14,8 +14,10 @@ export function Header() {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <Image src="/icon.ico" alt={COMPANY.name} width={60} height={60} />
-          <span className="font-semibold tracking-tight text-white">{COMPANY.name}</span>
+          <div className="flex items-center gap-2">
+            <Image src="/icon.ico" alt={COMPANY.name} width={38} height={38} />
+            <span className="font-semibold tracking-tight text-white">{COMPANY.name}</span>
+          </div>
         </motion.a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {menu.map((m) => (

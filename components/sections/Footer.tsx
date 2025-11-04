@@ -9,17 +9,19 @@ export function Footer() {
     <footer className="relative border-t border-purple-500/10 bg-black/20 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <motion.div 
+          <motion.div
             className="flex items-center group"
             whileHover={{ scale: 1.05 }}
           >
-            <Image src="/icon.ico" alt={COMPANY.name} width={64} height={64} />
-            <div>
-              <span className="font-bold text-white block">{COMPANY.name}</span>
-              <span className="text-xs text-gray-500 block ">AI-Driven Development</span>
+            <div className="flex items-center gap-2">
+              <Image src="/icon.ico" alt={COMPANY.name} width={48} height={48} />
+              <div>
+                <span className="font-bold text-white block">{COMPANY.name}</span>
+                <span className="text-xs text-gray-500 block ">AI-Driven Development</span>
+              </div>
             </div>
           </motion.div>
-          
+
           <div className="flex flex-col md:flex-row items-center gap-6 text-sm">
             <div className="flex items-center gap-6">
               {menu.map((m) => (
