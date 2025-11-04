@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build && next export",
+    "build": "next build",
     "deploy": "gh-pages -d out",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
