@@ -56,7 +56,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle 350px at ${cursorPosition.x}% ${cursorPosition.y}%, rgba(138, 43, 226, 0.08) 0%, rgba(0, 255, 255, 0.035) 25%, rgba(138, 43, 226, 0.015) 50%, transparent 75%)`,
+          background: `radial-gradient(circle 350px at ${cursorPosition.x}% ${cursorPosition.y}%, rgba(138, 43, 226, 0.12) 0%, rgba(0, 255, 255, 0.05) 25%, rgba(138, 43, 226, 0.02) 50%, transparent 75%)`,
           transition: 'background 0.1s ease-out',
           willChange: 'background',
         }}
@@ -64,13 +64,13 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
       
       {/* Animated Background Gradient with Mouse Interaction */}
       <motion.div
-        className="absolute inset-0 opacity-20 transition-transform duration-300 ease-out"
+        className="absolute inset-0 opacity-30 transition-transform duration-300 ease-out"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.15) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 70%, rgba(255, 0, 255, 0.15) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 80%, rgba(0, 255, 255, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.15) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.20) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.20) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 30%, rgba(138, 43, 226, 0.20) 0%, transparent 50%), radial-gradient(circle at 20% 70%, rgba(255, 0, 255, 0.20) 0%, transparent 50%)",
+            "radial-gradient(circle at 50% 80%, rgba(0, 255, 255, 0.20) 0%, transparent 50%), radial-gradient(circle at 50% 20%, rgba(138, 43, 226, 0.20) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.20) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.20) 0%, transparent 50%)",
           ],
         }}
         transition={{
@@ -85,9 +85,9 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
 
       {/* Secondary gradient layer for depth */}
       <motion.div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-30"
         style={{
-          background: `radial-gradient(circle at ${50 + mousePosition.x * 30}% ${50 + mousePosition.y * 30}%, rgba(138, 43, 226, 0.2) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${50 + mousePosition.x * 30}% ${50 + mousePosition.y * 30}%, rgba(138, 43, 226, 0.25) 0%, transparent 60%)`,
           transform: `translate3d(${mousePosition.x * -15}px, ${mousePosition.y * -15}px, 0)`,
           transition: "all 0.3s ease-out",
         }}
@@ -106,7 +106,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
             className="inline-flex items-center px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/5 backdrop-blur-sm mb-8"
           >
             <span className="text-xs uppercase tracking-[2px] font-medium text-gray-300">
-              <TypingText text={t.hero.tagline} delay={0} duration={0.6} />
+              {t.hero.tagline}
             </span>
           </motion.div>
         </AnimatePresence>
