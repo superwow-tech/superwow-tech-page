@@ -84,11 +84,11 @@ SMTP_PASS=your-password
 - This is free and works immediately
 
 ### Option B: Use Your GitHub Pages Domain
-To use `superwow-tech.github.io` with Vercel:
+To use `superwow.lt` with Vercel:
 
 1. **In Vercel Dashboard:**
    - Go to your project → Settings → Domains
-   - Add custom domain: `superwow-tech.github.io`
+   - Add custom domain: `superwow.lt`
 
 2. **In GitHub:**
    - Go to your repository → Settings → Pages
@@ -97,7 +97,7 @@ To use `superwow-tech.github.io` with Vercel:
 
 3. **DNS Configuration:**
    - Vercel will provide DNS records to add
-   - Add a CNAME record pointing `superwow-tech.github.io` to Vercel's servers
+   - Add a CNAME record pointing `superwow.lt` to Vercel's servers
 
 ### Option C: Use Your Own Custom Domain
 - Add your domain in Vercel → Settings → Domains
