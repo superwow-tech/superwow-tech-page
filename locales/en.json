@@ -16,52 +16,52 @@
   },
   "services": {
     "title": "What we do",
-    "subtitle": "From idea to a working solution – website creation, updates, and support",
+    "subtitle": "From idea to a working solution - websites, improvements, and ongoing support",
     "items": {
       "design": {
-        "title": "Design and Development",
-        "desc": "User-friendly design and a smooth experience."
+        "title": "Web Design",
+        "desc": "Clean, modern interfaces that are easy to use and look great on any device."
       },
       "custom": {
         "title": "Custom Software",
-        "desc": "Web solutions tailored to your business needs."
+        "desc": "Websites and internal tools tailored to your workflow - from idea to launch and care."
       },
       "ai": {
         "title": "AI Solutions",
-        "desc": "AI agents, integrations, and automation."
+        "desc": "Chat assistants, integrations, and automation to make daily work faster and easier."
       }
     }
   },
   "caseStudies": {
-    "title": "Selected work",
-    "subtitle": "List of our projects and services",
+    "title": "Work",
+    "subtitle": "Our projects and services",
     "needSimilar": "Need something similar?",
     "items": {
       "motion": {
         "name": "Superwow Motion",
-        "role": "Design",
+        "role": "Web Design",
         "impact": [
-          "Motion graphics",
-          "Marketing visuals",
-          "Website design"
+          "Website design",
+          "Brand visuals",
+          "Prototypes"
         ]
       },
       "saas": {
         "name": "Superwow SaaS",
-        "role": "SaaS platform",
+        "role": "Website Development",
         "impact": [
-          "Tools for business",
-          "Automation and optimization",
-          "Reports and analytics"
+          "Brand / Landing pages",
+          "Online stores",
+          "SaaS solutions"
         ]
       },
       "ai": {
         "name": "Superwow AI Solutions",
-        "role": "AI Development",
+        "role": "AI Solutions",
         "impact": [
-          "AI agents",
-          "LLM integration",
-          "Workflow automation"
+          "AI agents and chat",
+          "AI integrations",
+          "Process automation"
         ]
       }
     }

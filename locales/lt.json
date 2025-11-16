@@ -9,26 +9,26 @@
   },
   "hero": {
     "tagline": "AI-Driven Development Studio",
-    "title": "Interneto svetainių ir verslo sprendimai vienoje vietoje",
-    "subtitle": "Padedame jūsų verslui judėti greičiau su AI technologijomis",
+    "title": "Svetainių kūrimas ir išmanūs sprendimai jūsų verslui",
+    "subtitle": "Padedame judėti greičiau su AI technologijomis",
     "startProject": "Norėtumėte dirbti kartu?",
     "viewCaseStudies": "Projektai"
   },
   "services": {
     "title": "Ką mes darome",
-    "subtitle": "Nuo idėjos iki veikiantčio sprendimo – interneto svetainių kūrimas, atnaujinimas ir pagalba",
+    "subtitle": "Nuo idėjos iki veikiančio sprendimo – svetainių kūrimas, atnaujinimas ir pagalba",
     "items": {
       "design": {
-        "title": "Web Dizainas",
-        "desc": "Patogus, estetiškas ir aiškus dizainas."
+        "title": "Web dizainas",
+        "desc": "Kuriame šiuolaikiškus, aiškius ir patogius dizainus jūsų svetainei — gražiai atrodys tiek kompiuteryje, tiek telefone."
       },
       "custom": {
         "title": "Individuali programinė įranga",
-        "desc": "Kuriame svetaines ir įrankius, pritaikytus jūsų verslo poreikiams."
+        "desc": "Kuriame jums pritaikytas svetaines ir vidinius įrankius — idėjos ir priežiūros procesai."
       },
       "ai": {
         "title": "Dirbtinio intelekto sprendimai",
-        "desc": "AI agentai, integracijos ir automatizavimas."
+        "desc": "Diegiame AI sprendimus: pokalbių asistentus, integracijas ir automatizavimą, kad kasdieniai darbai vyktų greičiau ir paprasčiau."
       }
     }
   },
@@ -39,28 +39,28 @@
     "items": {
       "motion": {
         "name": "Superwow Motion",
-        "role": "Web Dizainas",
+        "role": "Web dizainas",
         "impact": [
-          "Animuota grafika",
-          "Rinkodaros vizualai",
-          "Svetainės dizainas"
+          "Svetainės dizainas",
+          "Reklamos vizualai",
+          "Prototipų kūrimas"
         ]
       },
       "saas": {
-        "name": "Superwow SaaS",
-        "role": "SaaS platformos",
+        "name": "Superwow Pages",
+        "role": "Interneto svetainių kūrimas",
         "impact": [
-          "Verslo įrankiai",
-          "Automatizavimas ir optimizavimas",
-          "Ataskaitos ir analitika"
+          "Prekės ženklo puslapiai (branding)",
+          "El. parduotuvės",
+          "SaaS sprendimai"
         ]
       },
       "ai": {
         "name": "Superwow AI Solutions",
         "role": "AI sprendimai",
         "impact": [
-          "AI agentai",
-          "LLM integracija",
+          "AI agentai ir pokalbių asistentai",
+          "AI integracijos",
           "Procesų automatizavimas"
         ]
       }
