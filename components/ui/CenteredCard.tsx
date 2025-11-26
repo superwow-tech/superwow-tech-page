@@ -9,13 +9,17 @@ interface CenteredCardProps {
   className?: string;
   baseStyle?: React.CSSProperties;
   delay?: number;
+  onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export function CenteredCard({ 
   children, 
   className = "", 
   baseStyle = {},
-  delay = 0 
+  delay = 0,
+  onMouseEnter,
+  onMouseLeave
 }: CenteredCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isCentered = useIsCentered(ref);
@@ -41,11 +45,13 @@ export function CenteredCard({
       onMouseEnter={(e) => {
         if (!isCentered) {
           e.currentTarget.style.boxShadow = "0 0 30px rgba(138, 43, 226, 0.3)";
+          onMouseEnter?.(e);
         }
       }}
       onMouseLeave={(e) => {
         if (!isCentered) {
           e.currentTarget.style.boxShadow = "0 0 0 rgba(138, 43, 226, 0)";
+          onMouseLeave?.(e);
         }
       }}
     >

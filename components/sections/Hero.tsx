@@ -116,7 +116,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6 sm:mb-8 leading-tight px-4"
+          className="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[7rem] font-bold tracking-tight mb-6 sm:mb-8 leading-tight px-4"
         >
           <span className="inline-block text-white">Build with </span>
           <br className="md:hidden" />
@@ -191,7 +191,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
           <AnimatePresence mode="wait">
             <motion.a
               key={t.hero.viewCaseStudies}
-              href="#work"
+              href="#services"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0 }}
