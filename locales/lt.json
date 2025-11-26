@@ -2,39 +2,50 @@
   "nav": {
     "home": "Pagrindinis",
     "services": "Paslaugos",
+    "process": "Procesas",
+    "whyUs": "Kodėl mes",
     "work": "Projektai",
     "stack": "Technologijos",
+    "faq": "DUK",
     "contact": "Kontaktai",
     "getQuote": "Gauti pasiūlymą"
   },
   "hero": {
     "tagline": "AI-Driven Development Studio",
-    "title": "Svetainių kūrimas ir išmanūs sprendimai jūsų verslui",
-    "subtitle": "Padedame judėti greičiau su AI technologijomis",
-    "startProject": "Norėtumėte dirbti kartu?",
-    "viewCaseStudies": "Projektai"
+    "title": "Idėjas paverčiame gamybos sprendimais",
+    "subtitle": "Kurkite greičiau su AI technologijomis—nuo prototipo iki produkto per savaites, ne mėnesius",
+    "startProject": "Pradėkite projektą",
+    "viewCaseStudies": "Mūsų darbai"
   },
   "services": {
-    "title": "Ką mes darome",
-    "subtitle": "Nuo idėjos iki veikiančio sprendimo – svetainių kūrimas, atnaujinimas ir pagalba",
+    "title": "Paslaugos",
+    "subtitle": "Gamybos sprendimai, kurie auga—ne prototipai, kurie rinkoje",
     "items": {
       "design": {
         "title": "Web dizainas",
-        "desc": "Kuriame šiuolaikiškus, aiškius ir patogius dizainus jūsų svetainei — gražiai atrodys tiek kompiuteryje, tiek telefone."
+        "desc": "Konversijomis orientuoti dizainai, kurie paverčia lankytojus klientais.",
+        "includes": ["Reaguojantis dizainas", "UI/UX optimizavimas", "Veikimo gerinimas", "SEO pagrindai"]
       },
       "custom": {
         "title": "Individuali programinė įranga",
-        "desc": "Kuriame jums pritaikytas svetaines ir vidinius įrankius — idėjos ir priežiūros procesai."
+        "desc": "Pilnavertės aplikacijos, sukurtos augimui. Nuo MVP iki įmonės—mes kurime, jūs augate.",
+        "includes": ["Pilnavertis kūrimas", "Duomenų bazės dizainas", "API integracija", "Diegimas ir hostingas"]
       },
       "ai": {
         "title": "Dirbtinio intelekto sprendimai",
-        "desc": "Diegiame AI sprendimus: pokalbių asistentus, integracijas ir automatizavimą, kad kasdieniai darbai vyktų greičiau ir paprasčiau."
+        "desc": "AI agentai ir automatizavimas, kurie pašalina pasikartojančius darbus.",
+        "includes": ["AI agentų kūrimas", "LLM integracijos", "Darbo eigų automatizavimas", "Individualūs AI įrankiai"]
       }
     }
   },
+  "howWeWork": {
+    "tagline": "Mūsų procesas",
+    "title": "Kaip mes dirbame",
+    "subtitle": "Nuo idėjos iki produkto. Jokio agencijos balasto—tik rezultatai."
+  },
   "caseStudies": {
-    "title": "Darbai",
-    "subtitle": "Mūsų projektų ir paslaugų sąrašas",
+    "title": "Projektai",
+    "subtitle": "Gamybos sprendimai visose srityse—nuo startuolių iki augančių įmonių",
     "needSimilar": "Norėtumėte kažko panašaus?",
     "items": {
       "motion": {
@@ -71,9 +82,9 @@
     "subtitle": "Naudojame naujausius ir patikimus įrankius"
   },
   "contact": {
-    "tagline": "Pradekime dirbti kartu",
-    "title": "Pasikalbėkime apie jūsų projektą",
-    "subtitle": "Susisieksime su jumis ir pasiūlysime planą, kainą ar pateiksime projekto pavyzdžių",
+    "tagline": "Pasiruošę kurti?",
+    "title": "Paverkime jūsų idėją produktu",
+    "subtitle": "Jokių pardavimų skambučių—tik rezultatai.",
     "form": {
       "name": "Vardas",
       "namePlaceholder": "Jonas Jonaitis",
@@ -83,10 +94,19 @@
       "messagePlaceholder": "Trumpai papasakokite apie savo projektą...",
       "sending": "Siunčiama...",
       "sent": "Ačiū — netrukus susisieksime ✓",
-      "send": "Siųsti",
+      "send": "Gauti pasiūlymą",
       "agreement": "Siųsdami sutinkate, kad su jumis būtų susisiekta dėl užklausos."
     },
     "copied": "Nukopijuota"
+  },
+  "whyChooseUs": {
+    "tagline": "Kodėl Superwow",
+    "title": "Kodėl rinktis mus",
+    "subtitle": "Mes ne kita agentūra. Mes produkto studija, kuri kuria greitai, auga geriau ir kainuoja mažiau."
+  },
+  "trustIndicators": {
+    "title": "Mūsų įsipareigojimai",
+    "subtitle": "Ko galite tikėtis dirbdami su mumis"
   },
   "footer": {
     "tagline": "AI-Driven Development",

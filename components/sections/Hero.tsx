@@ -94,7 +94,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-12 py-20 flex flex-col items-center text-center">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 md:px-12 py-12 sm:py-16 lg:py-20 flex flex-col items-center text-center">
         {/* Tagline Pill */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -103,7 +103,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="inline-flex items-center px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/5 backdrop-blur-sm mb-8"
+            className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-purple-500/30 bg-purple-500/5 backdrop-blur-sm mb-6 sm:mb-8"
           >
             <span className="text-xs uppercase tracking-[2px] font-medium text-gray-300">
               {t.hero.tagline}
@@ -116,7 +116,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6 sm:mb-8 leading-tight px-4"
         >
           <span className="inline-block text-white">Build with </span>
           <br className="md:hidden" />
@@ -133,7 +133,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-2xl md:text-3xl lg:text-4xl text-white font-semibold max-w-[800px] mb-6 leading-tight"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-semibold max-w-[800px] mb-4 sm:mb-6 leading-tight px-4"
           >
             <TypingText text={t.hero.title} delay={0.7} duration={0.7} />
           </motion.p>
@@ -147,7 +147,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-lg md:text-xl text-gray-400 font-normal max-w-[600px] mb-12 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-400 font-normal max-w-[600px] mb-8 sm:mb-12 leading-relaxed px-4"
           >
             <TypingText text={t.hero.subtitle} delay={1.5} duration={0.7} />
           </motion.p>
@@ -158,7 +158,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-4"
         >
           {/* Primary CTA */}
           <AnimatePresence mode="wait">
@@ -171,7 +171,7 @@ export function Hero({ mousePosition, onMouseMove }: HeroProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="group relative px-8 py-4 rounded-xl font-medium text-white overflow-hidden w-full sm:w-auto"
+              className="group relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-white overflow-hidden w-full sm:w-auto text-sm sm:text-base"
               style={{
                 background: "linear-gradient(90deg, #8A2BE2 0%, #00FFFF 100%)",
                 boxShadow: "0 0 20px rgba(138, 43, 226, 0.3)",

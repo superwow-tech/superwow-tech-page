@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Header } from "../components/sections/Header";
 import { Hero } from "../components/sections/Hero";
 import { Services } from "../components/sections/Services";
-import { CaseStudies } from "../components/sections/CaseStudies";
-import { TechStack } from "../components/sections/TechStack";
+import { HowWeWork } from "../components/sections/HowWeWork";
+import { WhyChooseUs } from "../components/sections/WhyChooseUs";
 import { Contact } from "../components/sections/Contact";
 import { Footer } from "../components/sections/Footer";
 
@@ -24,8 +24,8 @@ export default function Home() {
       <Header />
       <Hero mousePosition={mousePosition} onMouseMove={handleMouseMove} />
       <Services />
-      <CaseStudies />
-      <TechStack />
+      <HowWeWork />
+      <WhyChooseUs />
       <Contact />
       <Footer />
     </div>

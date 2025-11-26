@@ -2,39 +2,50 @@
   "nav": {
     "home": "Home",
     "services": "Services",
-    "work": "Case Studies",
-    "stack": "Tech Stack",
+    "process": "Process",
+    "whyUs": "Why Us",
+    "work": "Work",
+    "stack": "Stack",
+    "faq": "FAQ",
     "contact": "Contact",
     "getQuote": "Get a quote"
   },
   "hero": {
     "tagline": "AI-Driven Development Studio",
-    "title": "Where creativity meets web development",
-    "subtitle": "Helping your business move faster with innovative digital solutions",
-    "startProject": "Start a Project",
-    "viewCaseStudies": "View Case Studies"
+    "title": "Turn ideas into production-ready products",
+    "subtitle": "Ship faster with AI-powered development—from prototype to production in weeks, not months",
+    "startProject": "Launch Your Project",
+    "viewCaseStudies": "See Our Work"
   },
   "services": {
-    "title": "What we do",
-    "subtitle": "From idea to a working solution - websites, improvements, and ongoing support",
+    "title": "Services",
+    "subtitle": "Production-ready solutions that scale—not prototypes that collect dust",
     "items": {
       "design": {
         "title": "Web Design",
-        "desc": "Clean, modern interfaces that are easy to use and look great on any device."
+        "desc": "Conversion-focused interfaces that turn visitors into customers.",
+        "includes": ["Responsive design", "UI/UX optimization", "Performance tuning", "SEO basics"]
       },
       "custom": {
         "title": "Custom Software",
-        "desc": "Websites and internal tools tailored to your workflow - from idea to launch and care."
+        "desc": "Full-stack applications built for scale. From MVP to enterprise—we ship, you grow.",
+        "includes": ["Full-stack development", "Database design", "API integration", "Deployment & hosting"]
       },
       "ai": {
         "title": "AI Solutions",
-        "desc": "Chat assistants, integrations, and automation to make daily work faster and easier."
+        "desc": "AI agents and automation that eliminate repetitive work.",
+        "includes": ["AI agent development", "LLM integrations", "Workflow automation", "Custom AI tools"]
       }
     }
   },
+  "howWeWork": {
+    "tagline": "Our Process",
+    "title": "How We Work",
+    "subtitle": "From idea to production. No agency bloat—just results."
+  },
   "caseStudies": {
     "title": "Work",
-    "subtitle": "Our projects and services",
+    "subtitle": "Production-ready solutions across industries—from startups to scale-ups",
     "needSimilar": "Need something similar?",
     "items": {
       "motion": {
@@ -71,9 +82,9 @@
     "subtitle": "We work with modern and reliable tools"
   },
   "contact": {
-    "tagline": "Let's Build Something Amazing",
-    "title": "Tell us about your project or goals",
-    "subtitle": "We’ll get in touch with a plan, estimates or project examples",
+    "tagline": "Ready to Ship?",
+    "title": "Let's turn your idea into a product",
+    "subtitle": "No sales calls—just results.",
     "form": {
       "name": "Your name",
       "namePlaceholder": "John Doe",
@@ -83,10 +94,19 @@
       "messagePlaceholder": "Tell us about your project, timeline, and budget...",
       "sending": "Sending...",
       "sent": "Thanks — we'll reply soon ✓",
-      "send": "Send message",
+      "send": "Get My Proposal",
       "agreement": "By sending, you agree to be contacted about your inquiry."
     },
     "copied": "Copied"
+  },
+  "whyChooseUs": {
+    "tagline": "Why Superwow",
+    "title": "Why Choose Us",
+    "subtitle": "We're not another agency. We're a product studio that ships fast, scales better, and costs less."
+  },
+  "trustIndicators": {
+    "title": "Our Commitments",
+    "subtitle": "What you can expect when working with us"
   },
   "footer": {
     "tagline": "AI-Driven Development",

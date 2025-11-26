@@ -73,12 +73,12 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative pt-32 pb-16 overflow-hidden">
+    <section id="contact" className="relative pt-16 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px]" />
       
-      <div className="relative mx-auto max-w-4xl px-6">
+      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={t.contact.title}
@@ -87,19 +87,19 @@ export function Contact() {
             viewport={{ once: true }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
             <div className="inline-block mb-4">
-              <span className="px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 backdrop-blur-sm text-xs uppercase tracking-[2px] font-medium text-gray-300">
+              <span className="px-4 py-2 rounded-full border-2 border-cyan-500/40 bg-cyan-500/10 backdrop-blur-sm text-xs uppercase tracking-[2px] font-semibold text-cyan-300">
                 {t.contact.tagline}
               </span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
               <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                 {t.contact.title}
               </span>
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
               {t.contact.subtitle}
             </p>
           </motion.div>
@@ -112,9 +112,9 @@ export function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           onSubmit={handleSubmit}
-          className="relative rounded-2xl p-8 md:p-10 bg-gradient-to-br from-black/60 to-black/30 border border-purple-500/30 backdrop-blur-xl max-w-2xl mx-auto"
+          className="relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 bg-gradient-to-br from-black/60 to-black/30 border-2 border-purple-500/40 backdrop-blur-xl max-w-2xl mx-auto"
           style={{
-            boxShadow: "0 0 60px rgba(138, 43, 226, 0.15)",
+            boxShadow: "0 0 80px rgba(138, 43, 226, 0.25)",
           }}
         >
           <div className="space-y-5">
@@ -126,7 +126,7 @@ export function Contact() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-xl border border-purple-500/30 bg-black/40 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all"
+                  className="w-full rounded-xl border-2 border-purple-500/40 bg-black/50 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/60 focus:border-purple-500/70 transition-all"
                   placeholder={t.contact.form.namePlaceholder}
                 />
               </div>
@@ -139,7 +139,7 @@ export function Contact() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-xl border border-purple-500/30 bg-black/40 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all"
+                  className="w-full rounded-xl border-2 border-purple-500/40 bg-black/50 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/60 focus:border-purple-500/70 transition-all"
                   placeholder={t.contact.form.emailPlaceholder}
                 />
               </div>

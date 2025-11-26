@@ -6,7 +6,8 @@ export const COMPANY = {
 
 export const menu = [
   { id: "services", label: "Services" },
-  { id: "work", label: "Case Studies" },
-  { id: "stack", label: "Tech Stack" },
+  { id: "process", label: "Process" },
+  { id: "work", label: "Work" },
+  { id: "stack", label: "Stack" },
   { id: "contact", label: "Contact" },
 ];
