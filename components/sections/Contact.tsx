@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Check } from "lucide-react";
 import { COMPANY } from "../../lib/constants/company";
-import { useTranslation } from "../../contexts/LanguageContext";
+import { Link as LinkIcon, Check } from "lucide-react";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export function Contact() {
-  const { t } = useTranslation();
-  const [sent, setSent] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const { t } = useLanguage();
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,35 +16,17 @@ export function Contact() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleCopyLink = async () => {
-    const url = `https://${COMPANY.url}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (error) {
-      console.error('Failed to copy link:', error);
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+    setStatus('loading');
 
     try {
-      // Send email using API route
       const response = await fetch('/api/send-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           from_name: formData.name,
           from_email: formData.email,
@@ -56,173 +34,122 @@ export function Contact() {
         }),
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
-      }
-
-      setSent(true);
+      if (!response.ok) throw new Error('Failed to send');
+      
+      setStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('Email Error:', error);
-      setError(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
-    } finally {
-      setIsLoading(false);
+      console.error(error);
+      setStatus('error');
     }
   };
 
   return (
-    <section id="contact" className="relative pt-16 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px]" />
-      
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={t.contact.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8 sm:mb-12"
-          >
-            <div className="inline-block mb-4">
-              <span className="px-4 py-2 rounded-full border-2 border-cyan-500/40 bg-cyan-500/10 backdrop-blur-sm text-xs uppercase tracking-[2px] font-semibold text-cyan-300">
-                {t.contact.tagline}
-              </span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">
-              <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                {t.contact.title}
-              </span>
+    <section id="contact" className="border-b border-gray-800">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        
+        {/* Left: CTA */}
+        <div className="p-8 sm:p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-gray-800 flex flex-col justify-start h-full">
+          <div>
+            <span className="label-mono text-gray-500 block mb-4">{t.contact.section_label}</span>
+            <h2 className="text-6xl sm:text-8xl font-black tracking-tighter leading-[0.85] uppercase mb-8">
+              {t.contact.title.split(" ").map((word, i) => <span key={i} className="block">{word}</span>)}
             </h2>
-            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
-              {t.contact.subtitle}
+            <p className="text-gray-400 text-xl max-w-md leading-relaxed">
+              {t.contact.desc}
             </p>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
 
-        {/* Contact Form - Centered */}
-        <motion.form
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          onSubmit={handleSubmit}
-          className="relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 bg-gradient-to-br from-black/60 to-black/30 border-2 border-purple-500/40 backdrop-blur-xl max-w-2xl mx-auto"
-          style={{
-            boxShadow: "0 0 80px rgba(138, 43, 226, 0.25)",
-          }}
-        >
-          <div className="space-y-5">
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">{t.contact.form.name}</label>
+        {/* Right: Form */}
+        <div className="p-8 sm:p-12 lg:p-16 bg-black">
+          <form onSubmit={handleSubmit} className="space-y-10">
+            
+            <div className="group space-y-2">
+              <label className="text-xs font-mono uppercase text-gray-500 group-focus-within:text-[var(--color-electric)] transition-colors">
+                {t.contact.labels.name}
+              </label>
+              <div className="relative">
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 font-mono opacity-0 group-focus-within:opacity-100 transition-opacity">
+                  {'>'}
+                </span>
                 <input
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-xl border-2 border-purple-500/40 bg-black/50 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/60 focus:border-purple-500/70 transition-all"
-                  placeholder={t.contact.form.namePlaceholder}
+                  type="text"
+                  className="w-full bg-transparent border-b border-gray-700 py-4 pl-6 text-xl text-white focus:border-[var(--color-electric)] focus:border-b-2 focus:outline-none transition-all rounded-none placeholder-gray-800 font-mono"
+                  placeholder={t.contact.placeholders.name}
                 />
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">{t.contact.form.email}</label>
+            </div>
+
+            <div className="group space-y-2">
+              <label className="text-xs font-mono uppercase text-gray-500 group-focus-within:text-[var(--color-electric)] transition-colors">
+                {t.contact.labels.email}
+              </label>
+              <div className="relative">
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 font-mono opacity-0 group-focus-within:opacity-100 transition-opacity">
+                  @
+                </span>
                 <input
                   name="email"
-                  type="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full rounded-xl border-2 border-purple-500/40 bg-black/50 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/60 focus:border-purple-500/70 transition-all"
-                  placeholder={t.contact.form.emailPlaceholder}
+                  type="email"
+                  className="w-full bg-transparent border-b border-gray-700 py-4 pl-6 text-xl text-white focus:border-[var(--color-electric)] focus:border-b-2 focus:outline-none transition-all rounded-none placeholder-gray-800 font-mono"
+                  placeholder={t.contact.placeholders.email}
                 />
               </div>
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">{t.contact.form.message}</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={5}
-                required
-                className="w-full rounded-xl border border-purple-500/30 bg-black/40 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all resize-none"
-                placeholder={t.contact.form.messagePlaceholder}
-              />
+
+            <div className="group space-y-2">
+              <label className="text-xs font-mono uppercase text-gray-500 group-focus-within:text-[var(--color-electric)] transition-colors">
+                {t.contact.labels.project_details}
+              </label>
+              <div className="relative">
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={4}
+                  className="w-full bg-transparent border-b border-gray-700 py-4 text-xl text-white focus:border-[var(--color-electric)] focus:border-b-2 focus:outline-none transition-all rounded-none resize-none placeholder-gray-800 font-mono"
+                  placeholder={t.contact.placeholders.project_details}
+                />
+              </div>
             </div>
-            
-            {/* Error message */}
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm"
+
+            <div className="pt-8">
+              <button
+                type="submit"
+                disabled={status === 'loading' || status === 'success'}
+                className={`w-full py-6 font-bold tracking-widest uppercase text-sm transition-all border border-white hover:bg-[var(--color-electric)] hover:text-black hover:border-[var(--color-electric)]
+                  ${status === 'success' ? 'bg-green-500 text-black border-green-500' : 'text-white'}
+                `}
               >
-                {error}
-              </motion.div>
-            )}
+                {status === 'loading' ? t.contact.buttons.transmitting : status === 'success' ? t.contact.buttons.completed : t.contact.buttons.transmit}
+              </button>
+              {status === 'error' && (
+                <p className="mt-4 text-red-500 text-sm font-mono">{t.contact.errors.connection}</p>
+              )}
+            </div>
 
-            <motion.button
-              type="submit"
-              disabled={isLoading || sent}
-              whileHover={!isLoading && !sent ? { scale: 1.02 } : {}}
-              whileTap={!isLoading && !sent ? { scale: 0.98 } : {}}
-              className={`w-full rounded-xl text-white font-semibold py-4 shadow-lg transition-all ${
-                sent
-                  ? 'bg-green-600 shadow-green-500/30'
-                  : isLoading
-                  ? 'bg-gray-600 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-purple-600 to-cyan-500 shadow-purple-500/30 hover:shadow-purple-500/50'
-              }`}
-            >
-              {isLoading ? t.contact.form.sending : sent ? t.contact.form.sent : t.contact.form.send}
-            </motion.button>
-            
-            <p className="text-xs text-gray-500 text-center">
-              {t.contact.form.agreement}
-            </p>
-          </div>
-        </motion.form>
+          </form>
+        </div>
 
-        {/* Website link copy button */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex justify-center mt-16"
-        >
-          <motion.button
-            onClick={handleCopyLink}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm transition-all group cursor-pointer ${
-              copied
-                ? 'bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/50'
-                : 'bg-gradient-to-br from-magenta-500/10 to-purple-500/10 border border-magenta-500/30 hover:border-magenta-500/60'
-            }`}
-          >
-            {copied ? (
-              <>
-                <span className="text-green-400 font-medium">{t.contact.copied}</span>
-                <Check className="w-4 h-4 text-green-400 transition-all" />
-              </>
-            ) : (
-              <>
-                <span className="text-white font-medium">{COMPANY.url}</span>
-                <Copy className="w-4 h-4 text-magenta-400 group-hover:scale-110 transition-transform" />
-              </>
-            )}
-          </motion.button>
-        </motion.div>
       </div>
+      <style jsx>{`
+        @keyframes flash {
+          0% { opacity: 0.5; }
+          100% { opacity: 0; }
+        }
+        .animate-flash {
+          animation: flash 0.5s ease-out forwards;
+        }
+      `}</style>
     </section>
   );
 }

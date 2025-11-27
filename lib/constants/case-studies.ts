@@ -1,34 +1,32 @@
-import { CheckCircle2 } from "lucide-react";
-
 export const caseStudies = [
   {
-    logo: "🎥",
+    id: "motion",
     name: "Superwow Motion",
-    role: "Motion design studio",
+    role: "Web Design",
     impact: [
-      "Motion graphics",
-      "Marketing materials",
       "Website design",
+      "Brand visuals",
+      "Prototypes",
     ]
   },
   {
-    logo: "🛒",
+    id: "saas",
     name: "Superwow SaaS",
-    role: "SaaS platform",
+    role: "Website Development",
     impact: [
-      "Marketing automation",
-      "Pricing optimization",
-      "Reporting and analytics",
+      "Brand / Landing pages",
+      "Online stores",
+      "SaaS solutions",
     ]
   },
   {
-    logo: "🚀",
+    id: "ai",
     name: "Superwow AI Solutions",
-    role: "AI-powered solutions",
+    role: "AI Solutions",
     impact: [
-      "Agents",
-      "LLM integrations",
-      "Workflow automation",
+      "AI agents and chat",
+      "AI integrations",
+      "Process automation",
     ]
   },
 ];

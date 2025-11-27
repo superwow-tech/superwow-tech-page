@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Header } from "../components/sections/Header";
 import { Hero } from "../components/sections/Hero";
+import { TechStack } from "../components/sections/TechStack";
 import { Services } from "../components/sections/Services";
 import { HowWeWork } from "../components/sections/HowWeWork";
 import { WhyChooseUs } from "../components/sections/WhyChooseUs";
@@ -10,6 +11,7 @@ import { Contact } from "../components/sections/Contact";
 import { Footer } from "../components/sections/Footer";
 
 export default function Home() {
+  // Keeping mouse position logic for potential reuse, though new Hero might be self-contained
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -20,14 +22,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen text-neutral-100" style={{ background: '#0a0a0a' }}>
+    <main className="min-h-screen bg-white text-black selection:bg-[var(--color-electric)] selection:text-black">
       <Header />
       <Hero mousePosition={mousePosition} onMouseMove={handleMouseMove} />
+      <TechStack />
       <Services />
       <HowWeWork />
-      <WhyChooseUs />
-      <Contact />
-      <Footer />
-    </div>
+      
+      {/* Dark Footer Section */}
+      <div className="bg-black text-white border-t border-gray-800">
+        <WhyChooseUs />
+        <Contact />
+        <Footer />
+      </div>
+    </main>
   );
 }

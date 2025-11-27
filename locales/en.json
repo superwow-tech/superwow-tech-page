@@ -1,115 +1,107 @@
 {
-  "nav": {
-    "home": "Home",
-    "services": "Services",
-    "process": "Process",
-    "whyUs": "Why Us",
-    "work": "Work",
-    "stack": "Stack",
-    "faq": "FAQ",
-    "contact": "Contact",
-    "getQuote": "Get a quote"
-  },
   "hero": {
-    "tagline": "AI-Driven Development Studio",
-    "title": "Turn ideas into production-ready products",
-    "subtitle": "Ship faster with AI-powered development—from prototype to production in weeks, not months",
-    "startProject": "Launch Your Project",
-    "viewCaseStudies": "Check Our Services"
+    "titles": ["SOFTWARE STUDIO", "DIGITAL ENGINEERING", "TECHNICAL CONSULTING"],
+    "subheadline": "Turn Your Idea Into a Product.",
+    "subheadline_2": "Faster, Smarter, and Powered by AI.",
+    "faster": "Faster",
+    "smarter": "Smarter",
+    "product": "Product",
+    "est": "Est. 2025",
+    "action": "ACTION",
+    "explore": "EXPLORE CAPABILITIES",
+    "status_online": "SYS.STATUS: ONLINE",
+    "lat": "LAT",
+    "lon": "LON"
+  },
+  "header": {
+    "start_project": "Start Project",
+    "start": "START",
+    "available": "Available for Q1",
+    "vilnius": "VILNIUS",
+    "menu": "MENU"
+  },
+  "contact": {
+    "section_label": "CONTACT",
+    "title": "Ready to Start?",
+    "desc": "Tell us about your project. We respond within 24 hours.",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "project_details": "Project Details"
+    },
+    "placeholders": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "project_details": "Tell us about your idea..."
+    },
+    "buttons": {
+      "transmit": "TRANSMIT BRIEF",
+      "transmitting": "TRANSMITTING...",
+      "completed": "TRANSMISSION COMPLETE"
+    },
+    "errors": {
+      "connection": "Connection failed. Please retry."
+    }
+  },
+  "footer": {
+    "status": "STATUS: OPERATIONAL",
+    "copied": "COPIED TO CLIPBOARD"
   },
   "services": {
-    "title": "Services",
-    "subtitle": "Production-ready solutions that scale—not prototypes that collect dust",
+    "label": "CAPABILITIES",
+    "title": "What We Build",
     "items": {
-      "design": {
-        "title": "Web Design",
-        "desc": "Conversion-focused interfaces that turn visitors into customers.",
-        "includes": ["Responsive design", "UI/UX optimization", "Performance tuning", "SEO basics"]
+      "01": {
+        "title": "High-Converting Interfaces",
+        "desc": "We design and build pixel-perfect, accessible, and performant frontends that drive user action."
       },
-      "custom": {
-        "title": "Custom Software",
-        "desc": "Full-stack applications built for scale. From MVP to enterprise—we ship, you grow.",
-        "includes": ["Full-stack development", "Database design", "API integration", "Deployment & hosting"]
+      "02": {
+        "title": "Internal Tools & SaaS",
+        "desc": "Scalable backends and dashboards that streamline operations and empower your team."
       },
-      "ai": {
-        "title": "AI Solutions",
-        "desc": "AI agents and automation that eliminate repetitive work.",
-        "includes": ["AI agent development", "LLM integrations", "Workflow automation", "Custom AI tools"]
+      "03": {
+        "title": "AI Agents & Automation",
+        "desc": "Custom LLM integrations that automate complex workflows and provide intelligent insights."
       }
     }
   },
   "howWeWork": {
-    "tagline": "Our Process",
-    "title": "How We Work",
-    "subtitle": "From idea to production. No agency bloat—just results."
-  },
-  "caseStudies": {
-    "title": "Work",
-    "subtitle": "Production-ready solutions across industries—from startups to scale-ups",
-    "needSimilar": "Need something similar?",
-    "items": {
+    "label": "AREAS OF EXPERTISE",
+    "title": "Divisions",
+    "divisions": {
       "motion": {
         "name": "Superwow Motion",
         "role": "Web Design",
-        "impact": [
-          "Website design",
-          "Brand visuals",
-          "Prototypes"
-        ]
+        "impact": ["Website design", "Brand visuals", "Prototypes"]
       },
       "saas": {
         "name": "Superwow SaaS",
         "role": "Website Development",
-        "impact": [
-          "Brand / Landing pages",
-          "Online stores",
-          "SaaS solutions"
-        ]
+        "impact": ["Brand / Landing pages", "Online stores", "SaaS solutions"]
       },
       "ai": {
         "name": "Superwow AI Solutions",
         "role": "AI Solutions",
-        "impact": [
-          "AI agents and chat",
-          "AI integrations",
-          "Process automation"
-        ]
+        "impact": ["AI agents and chat", "AI integrations", "Process automation"]
       }
     }
   },
-  "techStack": {
-    "title": "Tech and skills",
-    "subtitle": "We work with modern and reliable tools"
-  },
-  "contact": {
-    "tagline": "Ready to Ship?",
-    "title": "Let's turn your idea into a product",
-    "subtitle": "No sales calls—just results.",
-    "form": {
-      "name": "Your name",
-      "namePlaceholder": "John Doe",
-      "email": "Email",
-      "emailPlaceholder": "john@company.com",
-      "message": "Project brief",
-      "messagePlaceholder": "Tell us about your project, timeline, and budget...",
-      "sending": "Sending...",
-      "sent": "Thanks — we'll reply soon ✓",
-      "send": "Get My Proposal",
-      "agreement": "By sending, you agree to be contacted about your inquiry."
-    },
-    "copied": "Copied"
-  },
   "whyChooseUs": {
-    "tagline": "Why Superwow",
-    "title": "Why Choose Us",
-    "subtitle": "We're not another agency. We're a product studio that ships fast, scales better, and costs less."
-  },
-  "trustIndicators": {
-    "title": "Our Commitments",
-    "subtitle": "What you can expect when working with us"
-  },
-  "footer": {
-    "tagline": "AI-Driven Development",
-    "copyright": "All rights reserved."
+    "speed": {
+      "title": "AI-Powered Speed",
+      "desc": "We use AI tools to ship faster than traditional agencies."
+    },
+    "ready": {
+      "title": "Production-Ready",
+      "desc": "No prototypes. We ship code that's ready for real users."
+    },
+    "modern": {
+      "title": "Modern Stack",
+      "desc": "Next.js, TypeScript, AI APIs. We use tools that scale, not legacy tech debt."
+    },
+    "direct": {
+      "title": "Direct Communication",
+      "desc": "Work directly with founders. No account managers, no bureaucracy."
+    }
   }
 }

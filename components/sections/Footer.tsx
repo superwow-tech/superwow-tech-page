@@ -1,60 +1,52 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { COMPANY } from "../../lib/constants/company";
-import { useTranslation } from "../../contexts/LanguageContext";
+import { useState, useEffect } from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
+
+// Helper component for Vilnius Time
+const VilniusTime = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Europe/Vilnius",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      };
+      setTime(now.toLocaleTimeString("en-US", options));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span>{time}</span>;
+};
 
 export function Footer() {
-  const { t } = useTranslation();
-
-  const navItems = [
-    { id: "services", label: t.nav.services },
-    { id: "work", label: t.nav.work },
-    { id: "why-us", label: t.nav.whyUs || "Why Us" },
-    { id: "contact", label: t.nav.contact },
-  ];
+  const { t } = useLanguage();
 
   return (
-    <footer className="relative border-t border-purple-500/10 bg-black/20 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <motion.div
-            className="flex items-center group"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="flex items-center gap-2">
-              <Image src="/icon.ico" alt={COMPANY.name} width={40} height={40} className="sm:w-12 sm:h-12" />
-              <div>
-                <span className="font-bold text-white block">{COMPANY.name}</span>
-                <AnimatePresence mode="wait">
-                  <span key={t.footer.tagline} className="text-xs text-gray-500 block">
-                    {t.footer.tagline}
-                  </span>
-                </AnimatePresence>
-              </div>
-            </div>
-          </motion.div>
+    <footer className="bg-black text-white">
+      {/* Status Bar */}
+      <div className="flex flex-col sm:flex-row justify-between items-center py-6 px-6 md:px-10 gap-4 border-t border-gray-800">
+        {/* Left: Company Name */}
+        <div className="text-xs font-bold tracking-widest uppercase">
+          SUPERWOW TECH
+        </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-              {navItems.map((m) => (
-                <a
-                  key={m.id}
-                  href={`#${m.id}`}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  {m.label}
-                </a>
-              ))}
-            </div>
-            <div className="h-px w-full md:h-4 md:w-px md:max-w-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-            <AnimatePresence mode="wait">
-              <p key={t.footer.copyright} className="text-gray-500 text-center md:text-left text-xs sm:text-sm">
-                © {new Date().getFullYear()} {COMPANY.name}, MB. {t.footer.copyright}
-              </p>
-            </AnimatePresence>
-          </div>
+        {/* Right: Status */}
+        <div className="flex items-center gap-3 text-xs font-mono text-gray-500 uppercase tracking-wide">
+          <span>VILNIUS <VilniusTime /></span>
+          <span className="text-gray-800">•</span>
+          <span className="flex items-center gap-2 text-white">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            {t.footer.status}
+          </span>
         </div>
       </div>
     </footer>

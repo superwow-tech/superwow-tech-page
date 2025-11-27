@@ -1,221 +1,188 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Rocket } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
-import { useTranslation } from "../../contexts/LanguageContext";
-import { TypingText } from "../ui/TypingText";
+import { motion, useMotionValue, useSpring, AnimatePresence, Variants } from "framer-motion";
+import { ArrowDownRight, Plus } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 interface HeroProps {
-  mousePosition: { x: number; y: number };
-  onMouseMove: (e: React.MouseEvent<HTMLElement>) => void;
+  mousePosition?: { x: number; y: number };
+  onMouseMove?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export function Hero({ mousePosition, onMouseMove }: HeroProps) {
-  const { t } = useTranslation();
-  const [cursorPosition, setCursorPosition] = useState({ x: 50, y: 50 });
-  const sectionRef = useRef<HTMLElement>(null);
-  const rafRef = useRef<number | undefined>(undefined);
+const letterVariants: Variants = {
+  hidden: { y: "100%" },
+  visible: (i: number) => ({
+    y: "0%",
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 1, 0.5, 1],
+      delay: i * 0.05,
+    },
+  }),
+  exit: (i: number) => ({
+    y: "-100%",
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 1, 0.5, 1],
+      delay: i * 0.05,
+    },
+  }),
+  hover: {
+    x: [0, -2, 2, -1, 1, 0],
+    color: ["#000000", "#00FF94", "#000000"],
+    transition: {
+      duration: 0.3,
+      times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+    },
+  },
+};
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    onMouseMove(e);
-    
-    if (sectionRef.current) {
-      const rect = sectionRef.current.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-      
-      rafRef.current = requestAnimationFrame(() => {
-        setCursorPosition({ x, y });
-      });
+export function Hero({ mousePosition, onMouseMove }: HeroProps) {
+  const { t } = useLanguage();
+  const [index, setIndex] = useState(0);
+  const titles = t.hero.titles;
+
+  // Magnetic Button Logic
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
+
+  const handleMagneticMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (rect) {
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      x.set((e.clientX - centerX) * 0.2);
+      y.set((e.clientY - centerY) * 0.2);
     }
   };
 
+  const handleMagneticLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   useEffect(() => {
-    return () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % titles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [titles.length]);
+
+  const titleText = titles[index];
+  const words = titleText.split(" ");
+  let globalCharIndex = 0;
 
   return (
     <section 
-      ref={sectionRef}
-      className="relative overflow-hidden min-h-screen flex items-center justify-center"
-      onMouseMove={handleMouseMove}
+      className="pt-14 sm:pt-16 min-h-[60vh] md:min-h-[100dvh] grid grid-cols-1 md:grid-cols-12 grid-rows-[auto_auto] md:grid-rows-[60fr_40fr] relative overflow-hidden bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+      onMouseMove={onMouseMove}
     >
-      {/* Vignette Effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40 pointer-events-none" />
-      
-      {/* Mouse-Follow Gradient Glow Effect */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle 350px at ${cursorPosition.x}% ${cursorPosition.y}%, rgba(138, 43, 226, 0.12) 0%, rgba(0, 255, 255, 0.05) 25%, rgba(138, 43, 226, 0.02) 50%, transparent 75%)`,
-          transition: 'background 0.1s ease-out',
-          willChange: 'background',
-        }}
-      />
-      
-      {/* Animated Background Gradient with Mouse Interaction */}
-      <motion.div
-        className="absolute inset-0 opacity-30 transition-transform duration-300 ease-out"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.20) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.20) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 30%, rgba(138, 43, 226, 0.20) 0%, transparent 50%), radial-gradient(circle at 20% 70%, rgba(255, 0, 255, 0.20) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 80%, rgba(0, 255, 255, 0.20) 0%, transparent 50%), radial-gradient(circle at 50% 20%, rgba(138, 43, 226, 0.20) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.20) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.20) 0%, transparent 50%)",
-          ],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{
-          transform: `translate3d(${mousePosition.x * 20}px, ${mousePosition.y * 20}px, 0)`,
-        }}
-      />
+      {/* Interactive Grid Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Vertical Lines */}
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gray-100 hidden md:block" />
+        <div className="absolute top-0 left-2/4 w-px h-full bg-gray-100 hidden md:block" />
+        <div className="absolute top-0 left-3/4 w-px h-full bg-gray-100 hidden md:block" />
+        
+        {/* Crosshairs */}
+        <div className="absolute top-24 left-6 text-gray-300"><Plus className="w-4 h-4" /></div>
+        <div className="absolute top-24 right-6 text-gray-300"><Plus className="w-4 h-4" /></div>
+        <div className="absolute bottom-6 left-6 text-gray-300"><Plus className="w-4 h-4" /></div>
+        <div className="absolute bottom-6 right-6 text-gray-300"><Plus className="w-4 h-4" /></div>
 
-      {/* Secondary gradient layer for depth */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background: `radial-gradient(circle at ${50 + mousePosition.x * 30}% ${50 + mousePosition.y * 30}%, rgba(138, 43, 226, 0.25) 0%, transparent 60%)`,
-          transform: `translate3d(${mousePosition.x * -15}px, ${mousePosition.y * -15}px, 0)`,
-          transition: "all 0.3s ease-out",
-        }}
-      />
+        {/* Floating Specs */}
+        <div className="absolute top-32 right-12 font-mono text-[10px] text-gray-400 tracking-widest hidden md:block text-right">
+          <div>{t.hero.status_online} <span className="animate-pulse text-[var(--color-electric)]">█</span></div>
+          <div>{t.hero.lat}: 54.6872° N</div>
+          <div>{t.hero.lon}: 25.2797° E</div>
+        </div>
+      </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 md:px-12 py-12 sm:py-16 lg:py-20 flex flex-col items-center text-center">
-        {/* Tagline Pill */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={t.hero.tagline}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-purple-500/30 bg-purple-500/5 backdrop-blur-sm mb-6 sm:mb-8"
-          >
-            <span className="text-xs uppercase tracking-[2px] font-medium text-gray-300">
-              {t.hero.tagline}
-            </span>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Headline with Animated Gradient */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[7rem] font-bold tracking-tight mb-6 sm:mb-8 leading-tight px-4"
-        >
-          <span className="inline-block text-white">Build with </span>
-          <br className="md:hidden" />
-          <span className="text-gradient-animated text-glow inline-block">
-            Superwow Tech
-          </span>
-        </motion.h1>
-
-        {/* Title */}
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={t.hero.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-semibold max-w-[800px] mb-4 sm:mb-6 leading-tight px-4"
-          >
-            <TypingText text={t.hero.title} delay={0.7} duration={0.7} />
-          </motion.p>
-        </AnimatePresence>
-
-        {/* Subheadline */}
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={t.hero.subtitle}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-base sm:text-lg md:text-xl text-gray-400 font-normal max-w-[600px] mb-8 sm:mb-12 leading-relaxed px-4"
-          >
-            <TypingText text={t.hero.subtitle} delay={1.5} duration={0.7} />
-          </motion.p>
-        </AnimatePresence>
-
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-4"
-        >
-          {/* Primary CTA */}
-          <AnimatePresence mode="wait">
-            <motion.a
-              key={t.hero.startProject}
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="group relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-white overflow-hidden w-full sm:w-auto text-sm sm:text-base"
-              style={{
-                background: "linear-gradient(90deg, #8A2BE2 0%, #00FFFF 100%)",
-                boxShadow: "0 0 20px rgba(138, 43, 226, 0.3)",
-              }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <Rocket className="w-5 h-5" />
-                {t.hero.startProject}
-              </span>
+      {/* Main Title Area */}
+      <div className="col-span-1 md:col-span-12 border-b-0 md:border-b border-gray-200 px-4 sm:px-10 md:px-20 pt-12 pb-8 md:py-20 flex flex-col justify-center items-start overflow-hidden relative z-10">
+        <div className="relative w-full">
+          <h1 className="heading-massive text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] uppercase flex flex-wrap gap-x-[0.2em] gap-y-0 hyphens-auto w-full break-words font-black tracking-tighter">
+            <AnimatePresence mode="wait">
               <motion.div
-                className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity"
-              />
-            </motion.a>
-          </AnimatePresence>
+                key={index}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="flex flex-wrap gap-x-[0.3em] gap-y-0 w-full"
+              >
+                {words.map((word, wordIndex) => (
+                  <span key={`${index}-${wordIndex}`} className="inline-block whitespace-nowrap">
+                    {word.split("").map((char, charIndex) => {
+                      const i = globalCharIndex++;
+                      return (
+                        <span key={`${index}-${wordIndex}-${charIndex}`} className="inline-block overflow-hidden align-bottom">
+                          <motion.span
+                            className="inline-block will-change-transform"
+                            variants={letterVariants}
+                            custom={i}
+                            whileHover="hover"
+                          >
+                            {char}
+                          </motion.span>
+                        </span>
+                      );
+                    })}
+                  </span>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </h1>
+        </div>
+      </div>
 
-          {/* Secondary CTA */}
-          <AnimatePresence mode="wait">
-            <motion.a
-              key={t.hero.viewCaseStudies}
-              href="#services"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="group relative px-8 py-4 rounded-xl font-medium text-white border border-purple-500/30 bg-white/5 backdrop-blur-sm overflow-hidden w-full sm:w-auto"
-              style={{
-                boxShadow: "0 0 0 rgba(138, 43, 226, 0)",
-                transition: "box-shadow 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = "0 0 20px rgba(138, 43, 226, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "0 0 0 rgba(138, 43, 226, 0)";
-              }}
+      {/* Bottom Left: Copy with Highlighted Keywords */}
+      <div className="col-span-1 md:col-span-8 border-b md:border-b-0 md:border-r border-gray-200 px-6 sm:px-10 md:px-20 pt-2 pb-12 md:py-10 flex flex-col justify-start relative z-10 bg-white/80 backdrop-blur-sm min-h-[200px] md:min-h-[300px]">
+        <div className="max-w-2xl mt-8 md:mt-12">
+          <h2 className="text-2xl md:text-4xl font-normal leading-tight tracking-tight mb-4 text-gray-900">
+            {t.hero.subheadline} <span className="text-black font-black">{t.hero.product}</span>. <br className="hidden md:block" />
+            <span className="text-black font-black">{t.hero.faster}</span>, <span className="text-black font-black">{t.hero.smarter}</span>, {t.hero.subheadline_2.replace('Faster, Smarter, ', '')} <span className="text-[var(--color-electric)]">AI</span>.
+          </h2>
+        </div>
+      </div>
+
+      {/* Bottom Right: "The Void" / Interactive Zone */}
+      <div className="col-span-1 md:col-span-4 p-0 relative z-10 group border-b border-gray-200 md:border-b-0 bg-gray-50 overflow-hidden h-auto min-h-[120px] md:min-h-[300px]">
+        {/* Interactive "Void" Effect Layer */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-200 via-transparent to-transparent" />
+        
+        <motion.div 
+          ref={ref}
+          className="w-full h-full p-6 md:p-10 flex flex-col justify-between cursor-pointer relative z-20 hover:bg-black hover:text-white transition-colors duration-300"
+          onMouseMove={handleMagneticMove}
+          onMouseLeave={handleMagneticLeave}
+          style={{ x: springX, y: springY }}
+        >
+          <div className="flex justify-between items-start w-full">
+            <span className="label-mono text-gray-500 group-hover:text-[var(--color-electric)]">
+              {t.hero.est}
+            </span>
+          </div>
+          
+          <div className="mt-8 md:mt-auto flex items-end justify-between w-full">
+            <div className="pl-12 md:pl-0 relative z-10">
+              <span className="block font-mono text-xs mb-1 text-gray-500 group-hover:text-gray-400 hidden md:block">{t.hero.action}</span>
+              <span className="text-xl md:text-3xl font-black tracking-tight group-hover:text-white uppercase block max-w-[200px] md:max-w-none">{t.hero.explore}</span>
+            </div>
+            
+            <motion.div
+              className="hidden md:block"
+              whileHover={{ scale: 1.1, rotate: -45 }}
+              transition={{ type: "spring", stiffness: 200 }}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <ExternalLink className="w-5 h-5" />
-                {t.hero.viewCaseStudies}
-              </span>
-            </motion.a>
-          </AnimatePresence>
+               <ArrowDownRight className="w-16 h-16 md:w-24 md:h-24 group-hover:text-[var(--color-electric)] animate-bounce" strokeWidth={1} />
+            </motion.div>
+             <ArrowDownRight className="w-12 h-12 md:hidden group-hover:text-[var(--color-electric)] animate-bounce" strokeWidth={1} />
+          </div>
         </motion.div>
       </div>
     </section>
